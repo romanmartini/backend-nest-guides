@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { Coffee } from './entities/coffees.entity';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -12,20 +12,14 @@ export class CoffeesController {
     ){}
 
     @Get()
-    findAll(@Query() paginationQuery): Coffee[]{
-        const { limit, offset } = paginationQuery;
-        return this.coffeesService.findAll();
+    findAll(@Query() paginationQuery: PaginationQueryDto) {
+        return this.coffeesService.findAll(paginationQuery);
     }
 
     @Get(':id')
     findOne(@Param('id') id: string){
-        throw 'A random error'
-        const coffee =  this.coffeesService.findOne(id);
-        if (!coffee) {
-            // throw new HttpException(`coffe #${id} not found`, HttpStatus.NOT_FOUND )
-            throw new NotFoundException(`coffe #${id} not found`)
-        }
-        return coffee;
+        // throw 'A random error'
+        return this.coffeesService.findOne(id);
     }
 
     @Post()

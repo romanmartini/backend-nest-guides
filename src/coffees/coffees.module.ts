@@ -9,6 +9,7 @@ import { CoffeesService } from './coffees.service';
 
 // Schemma
 import { Coffee, CoffeeSchema } from './entities/coffees.entity';
+import { Event, EventSchema } from 'src/events/entities/event.entity';
 
 @Module({
     imports: [
@@ -17,6 +18,10 @@ import { Coffee, CoffeeSchema } from './entities/coffees.entity';
                 name: Coffee.name,
                 schema: CoffeeSchema,
             },
+            {
+                name: Event.name,
+                schema: EventSchema
+            }
         ]),
     ],
     controllers: [

@@ -6,8 +6,6 @@ import { AppService } from './app.service';
 // Modules
 import { CoffeesModule } from './coffees/coffees.module';
 
-// 
-
 @Module({
   imports: [
     CoffeesModule,
