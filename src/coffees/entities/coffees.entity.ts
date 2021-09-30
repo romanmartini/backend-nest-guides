@@ -1,6 +1,15 @@
-export interface Coffees{
-    _id?: string,
-    name: string,
-    brand: string,
-    flavors: string[]
+import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+
+@Schema()
+export class Coffee extends Document{
+    @Prop()
+    name: string;
+
+    @Prop()
+    brand: string;
+
+    @Prop([String])
+    flavors: string[];
 }
+
+export const CoffeeSchema = SchemaFactory.createForClass(Coffee) 

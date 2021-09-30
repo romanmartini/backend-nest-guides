@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, NotFoundExcep
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { Coffees } from './entities/coffees.entity';
+import { Coffee } from './entities/coffees.entity';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -12,7 +12,7 @@ export class CoffeesController {
     ){}
 
     @Get()
-    findAll(@Query() paginationQuery): Coffees[]{
+    findAll(@Query() paginationQuery): Coffee[]{
         const { limit, offset } = paginationQuery;
         return this.coffeesService.findAll();
     }
